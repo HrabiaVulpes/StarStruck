@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dge4inuopjbt3"]
+
+[ext_resource type="Script" path="res://scripts/asteroids_screen.gd" id="1_x7fww"]
+[ext_resource type="Texture2D" uid="uid://b1rimaebh2wv7" path="res://images/starryBack.jpg" id="2_xuanc"]
+[ext_resource type="PackedScene" uid="uid://dh40wkny8ar67" path="res://scenes/player_ship.tscn" id="3_01ida"]
+[ext_resource type="PackedScene" uid="uid://dwynnauw4mdq1" path="res://scenes/blockade.tscn" id="4_toxxm"]
+
+[sub_resource type="Theme" id="Theme_yd61y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hyw4u"]
+bg_color = Color(0, 0.466667, 0.27451, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_x7fww")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(572.75, 322.5)
+scale = Vector2(2.34676, 1.90833)
+texture = ExtResource("2_xuanc")
+
+[node name="PlayerShip" parent="." instance=ExtResource("3_01ida")]
+position = Vector2(579, 546)
+
+[node name="BlockadeS" parent="." instance=ExtResource("4_toxxm")]
+position = Vector2(-7, 668)
+
+[node name="BlockadeN" parent="." instance=ExtResource("4_toxxm")]
+position = Vector2(6, -16)
+
+[node name="BlockadeE" parent="." instance=ExtResource("4_toxxm")]
+position = Vector2(1159, -15)
+rotation = 1.56098
+
+[node name="BlockadeW" parent="." instance=ExtResource("4_toxxm")]
+position = Vector2(-7, 665)
+rotation = -1.5853
+
+[node name="Spawner" type="Timer" parent="."]
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+top_level = true
+offset_right = 325.0
+offset_bottom = 27.0
+theme = SubResource("Theme_yd61y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hyw4u")
+value = 100.0
+
+[connection signal="value_changed" from="ProgressBar" to="." method="_on_progress_bar_value_changed"]

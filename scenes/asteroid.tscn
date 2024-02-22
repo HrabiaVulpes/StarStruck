@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://boohrt64jpvv3"]
+
+[ext_resource type="Script" path="res://scripts/asteroid.gd" id="1_kroix"]
+[ext_resource type="Texture2D" uid="uid://so78uo4mammf" path="res://images/asteroid.png" id="2_iswuk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_omg56"]
+friction = 0.0
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jsuia"]
+radius = 53.2353
+
+[node name="Asteroid" type="RigidBody2D"]
+collision_layer = 6
+collision_mask = 6
+physics_material_override = SubResource("PhysicsMaterial_omg56")
+gravity_scale = 0.0
+script = ExtResource("1_kroix")
+
+[node name="AsteroidImage" type="Sprite2D" parent="."]
+position = Vector2(-0.999996, 3)
+scale = Vector2(0.271363, 0.297066)
+texture = ExtResource("2_iswuk")
+
+[node name="AsteroidCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_jsuia")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

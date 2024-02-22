@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://0b8jmv0wfynh"]
+
+[ext_resource type="Texture2D" uid="uid://b1rimaebh2wv7" path="res://images/starryBack.jpg" id="1_crj1w"]
+[ext_resource type="Script" path="res://scripts/game_menu.gd" id="1_d85th"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(578.25, 324)
+scale = Vector2(2.36444, 1.92778)
+texture = ExtResource("1_crj1w")
+
+[node name="GameMenu" type="Node2D" parent="."]
+script = ExtResource("1_d85th")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameMenu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -91.0
+offset_right = 102.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="MainMenuLabel" type="Label" parent="GameMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main menu"
+horizontal_alignment = 1
+
+[node name="EvasionModeButton" type="Button" parent="GameMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Evasion Mode"
+
+[node name="ShootdownModeButton" type="Button" parent="GameMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Shootdown Mode"
+
+[node name="CollectionModeButton" type="Button" parent="GameMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Collection Mode"
+
+[node name="SettingsButton" type="Button" parent="GameMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[connection signal="pressed" from="GameMenu/MarginContainer/VBoxContainer/EvasionModeButton" to="GameMenu" method="_on_evasion_mode_button_pressed"]
